@@ -1,0 +1,12 @@
+psycopg2
+SQLAlchemy
+google-generativeai
+spacy
+textblob
+nltk
+python-dotenv
+fastapi
+uvicorn
+pydantic
+pdfplumber
+openai
