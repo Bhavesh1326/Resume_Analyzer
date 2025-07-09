@@ -2,6 +2,153 @@
 
 AutoResume is a modern web application that uses advanced NLP and AI techniques to analyze resumes against job descriptions. It provides detailed feedback on ATS compatibility, keyword matching, skill gaps, and formatting issues.
 
+## Environment Setup
+
+### Prerequisites
+- Python 3.10 or higher
+- Node.js 18 or higher
+- Docker (optional, for containerized deployment)
+
+### 1. Clone the Repository
+```bash
+git clone https://github.com/yourusername/Resume_Analyzer.git
+cd Resume_Analyzer
+```
+
+### 2. Environment Variables Setup
+
+#### For Local Development
+1. Create a `.env` file in the project root:
+   ```bash
+   # On Windows
+   copy .env.example .env
+   
+   # On Linux/Mac
+   cp .env.example .env
+   ```
+
+2. Edit the `.env` file and update the following required configurations:
+   ```
+   # Required: Get your API key from Google AI Studio
+   GEMINI_API_KEY=your_gemini_api_key_here
+   
+   # Backend Configuration
+   PORT=8000
+   DEBUG=True
+   
+   # Frontend Configuration
+   VITE_API_BASE_URL=http://localhost:8000
+   ```
+
+#### Important Security Notes
+- 🔒 **Never commit your `.env` file** - It's already added to `.gitignore`
+- 🔑 Keep your API keys secure and never share them publicly
+- 📝 Use `.env.example` as a reference for required environment variables
+- 🌐 For production, use environment-specific configuration management
+
+### 3. Install Dependencies
+
+#### Option A: Using Docker (Recommended)
+```bash
+# Build and start all services
+docker-compose up --build
+
+# To run in detached mode
+docker-compose up -d
+
+# View logs
+docker-compose logs -f
+```
+
+#### Option B: Manual Setup
+```bash
+# Install Python dependencies
+pip install -r requirements.txt
+
+# Install Node.js dependencies
+cd frontend
+npm install
+cd ..
+```
+
+### 4. Running the Application
+
+#### Development Mode
+```bash
+# Start backend server (in project root)
+uvicorn backend.main:app --reload
+
+# In a new terminal, start frontend
+cd frontend
+npm run dev
+```
+
+#### Production Mode
+```bash
+# Build frontend for production
+cd frontend
+npm run build
+
+# Start production server (from project root)
+uvicorn backend.main:app --host 0.0.0.0 --port 8000
+```
+
+### 5. Verifying the Setup
+1. Frontend should be available at: http://localhost:3000
+2. Backend API should be available at: http://localhost:8000
+3. API documentation (Swagger UI) at: http://localhost:8000/docs
+
+## Configuration Reference
+
+### Environment Variables
+
+| Variable | Description | Required | Default |
+|----------|-------------|----------|---------|
+| `GEMINI_API_KEY` | Google AI Studio API key | Yes | - |
+| `PORT` | Backend server port | No | 8000 |
+| `DEBUG` | Enable debug mode | No | True |
+| `VITE_API_BASE_URL` | Frontend API base URL | No | http://localhost:8000 |
+
+### Troubleshooting
+
+#### Common Issues
+1. **Missing Environment Variables**
+   - Ensure all required variables are set in your `.env` file
+   - Compare with `.env.example` for reference
+
+2. **Port Conflicts**
+   - Check if ports 3000 (frontend) and 8000 (backend) are available
+   - Update ports in `.env` if needed
+
+3. **Docker Issues**
+   - Make sure Docker is running
+   - Try rebuilding containers: `docker-compose build --no-cache`
+
+## Contributing
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Acknowledgments
+
+- [Google Gemini API](https://ai.google.dev/)
+- [FastAPI](https://fastapi.tiangolo.com/)
+- [React](https://reactjs.org/)
+- [Tailwind CSS](https://tailwindcss.com/)
+
+---
+
+<div align="center">
+  Made with ❤️ for better job applications
+</div>
+
 ## Features
 
 ### ATS Compatibility Analysis
